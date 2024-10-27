@@ -1,0 +1,441 @@
+
+<!doctype html>
+<html>
+
+<head>
+	<script>
+		function disableClick(){
+			ducument.oneclick=function(event){
+				if (event.button == 2) {
+					alert('Right Click Message');
+					return false;
+				}
+			}
+		}
+	</script>
+	<meta charset="utf-8">
+	<meta http-equiv="X-UA-Compatible" content="IE=edge">
+	<meta name="viewport" content="width=device-width, initial-scale=1">
+	<title>Bongo Flix Live Tv</title>
+	<link href="css/bootstrap.min.css" rel="stylesheet">
+	<link href="css/style.css" rel="stylesheet">
+	<link rel="shortcut icon" type="image/x-icon" href="https://i.ibb.co.com/6ZJ3kkw/BONGO-FLIX.jpg">
+	<!--[if lt IE 9]>
+	<script src="https://oss.maxcdn.com/html5shiv/3.7.3/>html5shiv.min.js"></script>
+	<script src="https://oss.maxcdn.com/respond/1.4.2/respond.min.js"></script>
+<![endif]-->
+</head>
+
+<body>
+
+	<body onload="disableClick()">
+		<style>
+			.btn-custom {
+				display: inline-block;
+				background-color: black;
+				color: black;
+				padding: 10px 20px;
+				text-decoration: none;
+				border-radius: 4px;
+				font-size: 16px;
+			}
+		</style>
+
+
+    <style>
+        body {
+            font-family: Arial, sans-serif;
+            background-color: #646464;
+            margin: 0;
+            padding: 0;
+            
+        }
+
+        /* Main container */
+        .main-container {
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+            justify-content: center;
+            width: 100%;
+            max-width: 1000px;
+            margin: 0 auto;
+            padding: 20px;
+        }
+
+        .tv-container {
+            width: 100%;
+            max-width: 600px;
+            margin: 20px 0;
+        }
+
+        iframe {
+            width: 100%;
+            height: 350px;
+            border: none;
+            border-radius: 10px;
+            box-shadow: rgba(50, 50, 93, 0.25) 0px 6px 12px -2px, rgba(0, 0, 0, 0.3) 0px 3px 7px -3px;
+        }
+
+        .channel-slider-container {
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            margin: 20px 0;
+            position: relative;
+            width: 100%;
+            max-width: 800px;
+        }
+
+        .channel-slider {
+            display: flex;
+            overflow-x: scroll;
+            scroll-behavior: smooth;
+            padding: 10px;
+            width: 100%;
+        }
+
+        .channel-images {
+            display: flex;
+        }
+
+        .img-div {
+            width: 140px;
+            height: 90px;
+            background-color: white;
+            margin-right: 20px;
+            border-radius: 10px;
+            cursor: pointer;
+            transition: transform 0.3s;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            user-select: none;
+            box-shadow: rgba(50, 50, 93, 0.25) 0px 6px 12px -2px, rgba(0, 0, 0, 0.3) 0px 3px 7px -3px;
+        }
+
+        .channel-slider img {
+            width: 60%;
+            object-fit: contain;
+        }
+
+        .img-div:hover {
+            transform: scale(1.1);
+        }
+
+        .scroll-button {
+            position: absolute;
+            top: 50%;
+            transform: translateY(-50%);
+            width: 35px;
+            height: 35px;
+            color: white;
+            border: none;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            cursor: pointer;
+            z-index: 1;
+            opacity: 0.8;
+            transition: background-color 0.2s ease, transform 0.2s ease;
+            user-select: none;
+            border-radius: 50%;
+            box-shadow: rgba(50, 50, 93, 0.25) 0px 6px 12px -2px, rgba(0, 0, 0, 0.3) 0px 3px 7px -3px;
+        }
+
+        .scroll-button img{
+            width: 140%;
+            object-fit: cover;
+        }
+
+        .scroll-button:active {
+            transform: scale(0.95);
+        }
+
+        .scroll-button:hover {
+            opacity: 1;
+        }
+
+        .left-button {
+            left: -40px;
+        }
+
+        .right-button {
+            right: -40px;
+        }
+
+        /* Modal Styles */
+        .modal {
+            display: none;
+            position: fixed;
+            z-index: 1000;
+            left: 0;
+            top: 0;
+            width: 100%;
+            height: 100%;
+            background-color: rgba(0, 0, 0, 0.7);
+        }
+
+        .modal-content {
+            background-color: #fff;
+            margin: 15% auto;
+            padding: 20px;
+            width: 80%;
+            max-width: 200px;
+            border-radius: 10px;
+        }
+
+        .close-btn {
+            color: #aaa;
+            float: right;
+            font-size: 28px;
+            font-weight: bold;
+            cursor: pointer;
+        }
+
+        .close-btn:hover, .close-btn:focus {
+            color: black;
+        }
+
+        .modal-links {
+            display: flex;
+            flex-direction: column;
+        }
+
+        .modal-links button {
+            padding: 10px;
+            margin: 5px 0;
+            background-color: #333;
+            color: white;
+            border: none;
+            cursor: pointer;
+            border-radius: 5px;
+        }
+
+        .modal-links button:hover {
+            background-color: #555;
+        }
+
+        /* Custom scrollbar style */
+        .channel-slider::-webkit-scrollbar {
+            width: 8px;
+            height: 8px;
+        }
+
+        .channel-slider::-webkit-scrollbar-track {
+            background: #ddd;
+            border-radius: 10px;
+        }
+
+        .channel-slider::-webkit-scrollbar-thumb {
+            background-color: #1cb711;
+            border-radius: 10px;
+            border: 2px solid #ddd;
+        }
+
+        .channel-slider::-webkit-scrollbar-thumb:hover {
+            background-color: #555;
+        }
+
+        
+
+        /* Responsive Design */
+        @media (max-width: 768px) {
+            .tv-container iframe {
+                height: 300px;
+            }
+
+            .channel-slider img {
+                width: 90px;
+                height: 70px;
+            }
+        }
+
+        @media (max-width: 480px) {
+            
+
+            .img-div {
+                width: 120px;
+                height: 70px;
+            }
+
+            .modal-content{
+                margin: 50% auto;
+            }
+
+            .channel-slider-container{
+                max-width: 400px;
+            }
+
+            .tv-container iframe{
+                height: 220px;
+            }
+
+            .scroll-button{
+                display: none;
+            }
+
+            
+        }
+        .header{
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            text-align: center; /* Center aligns text inside the container */
+            margin-top: 20px;
+        }
+
+        .header h4{
+        font-size: 40px;
+        margin: 0px;
+        font-style: italic;
+        color: rgb(25, 250, 25);
+        }
+
+        .hr{
+            width: 25%;
+        }
+        .counter{
+  width: 10%;  /* or any desired width */
+  margin: 0 auto;
+        }
+    </style>
+<style type="text/css">* {user-select: auto !important; -webkit-user-select: auto !important;}</style><input type="hidden" id="inject_idm_text_selection"><style></style></head>
+<body>
+<div class="header">
+    <h4>BONGO  FLIX</h4>
+</div>
+
+<hr class="hr">
+<head>
+		<script>
+		function disableClick(){
+			ducument.oneclick=function(event){
+				if (event.button == 2) {
+					alert('Right Click Message');
+					return false;
+				}
+			}
+		}
+		</script>
+
+	
+<div class="container tv-area">
+  <div class="col-xs-12 col-md-10 tv-view">
+    <div class="embed-responsive embed-responsive-16by9">
+         <iframe name="player" class="embed-responsive-item" allowfullscreen src="http://bongoflix.unaux.com/player.html?url=https://dzkyvlfyge.erbvr.com/PeaceTvBangla/tracks-v3a1/mono.m3u8"></iframe>        </div>
+  </div>
+  <div class="col-xs-12 col-md-2 channel-list">
+    <ul class="thumbnail-slider">
+      <li><a href="javascript:void();" onclick="player.location.href='tv1.html?stream=sports2'"><img src="https://i.postimg.cc/50dpQDQ5/20240823_024742.png" alt="1"></a></li>
+      <li><a href="javascript:void();" onclick="player.location.href='tv2.html?stream=sports3'"><img src="https://i.postimg.cc/W4JX3szb/20240823_024759.png" alt="2"></a></li>
+	   <li><a href="javascript:void();" onclick="player.location.href='http://bongoflix.unaux.com/player3.html?stream=https://mytvbangla.com/0.m3u8'"><img src="https://i.postimg.cc/wB9kQDTZ/20240822-225812.png" alt="My Tv"></a></li>
+       
+	    	   <li><a href="javascript:void();" onclick="player.location.href='http://bongoflix.unaux.com/player.html?url=http://alvetv.com/moviebanglatv/8080/index.m3u8'"><img src="https://i.postimg.cc/mr68ZtBn/20240822-231053.png" alt="Movie Bangla"></a></li>
+	 <li><a href="javascript:void();" onclick="player.location.href='tv9.html?stream=sports10'"><img src="https://i.postimg.cc/xdj4TwHX/20240822-230629.png" alt="9"></a></li>
+	<li><a href="javascript:void();" onclick="player.location.href='tv10.html?stream=sports11'"><img src="https://i.postimg.cc/bYSFJHG9/20240822-230812.png" alt="Deepto"></a></li>
+ <li><a href="javascript:void();" onclick="player.location.href='tv11.html?stream=sports2'"><img src="https://i.postimg.cc/fy1KcFJf/20240822-225533.png" alt="11"></a></li>
+  <li><a href="javascript:void();" onclick="player.location.href='tv12.html?stream=sports2'"><img src="https://i.postimg.cc/9fq1Q4Hz/20240825_070144.png" alt="12"></a></li>
+   <li><a href="javascript:void();" onclick="player.location.href='tv13.html?stream=sports2'"><img src="https://i.postimg.cc/jdgh66sL/20240825_071205.png" alt="13"></a></li>
+	 <li><a href="javascript:void();" onclick="player.location.href='tv15.html?stream=sports2'"><img src="https://i.postimg.cc/rsDjtcFp/20240822-225424.png" alt="15"></a></li>
+	     <li><a href="javascript:void();" onclick="player.location.href='tv14.html?stream=sports2'"><img src="https://i.postimg.cc/KzBBXzzB/20240823_020556.png" alt="Amar Bangla"></a></li>
+	  <li><a href="javascript:void();" onclick="player.location.href='tv16.html?stream=sports2'"><img src="https://i.postimg.cc/25PhXvzC/20240823_020526.png" alt="Amar Digital"></a></li>
+	   <li><a href="javascript:void();" onclick="player.location.href='tv17.html?stream=sports2'"><img src="https://i.postimg.cc/Kc7BJRCy/20240823_020704.png" alt="17"></a></li>
+	    
+	    <li><a href="javascript:void();" onclick="player.location.href='tv18.html?stream=sports2'"><img src="https://i.postimg.cc/W40h5jPh/20240825_060045.png" alt="18"></a></li>
+		 <li><a href="javascript:void();" onclick="player.location.href='tv19.html?stream=sports2'"><img src="https://i.postimg.cc/tC7JLFj0/20240825_055845.png" alt="19"></a></li>
+		  <li><a href="javascript:void();" onclick="player.location.href='tv20.html?stream=sports2'"><img src="https://i.postimg.cc/HnWQXnRw/20240825_075104.png" alt="20"></a></li>
+	      <li><a href="javascript:void();" onclick="player.location.href='tv21.html?stream=sports2'"><img src="https://i.postimg.cc/MK4HxX6n/20240825_055833.png" alt="21"></a></li>
+	    
+	    <li><a href="javascript:void();" onclick="player.location.href='tv28.html?stream=sports2'"><img src="https://i.postimg.cc/MGkpCYj3/20240823_021848.png" alt="28"></a></li>
+	      <li><a href="javascript:void();" onclick="player.location.href='tv27.html?stream=sports2'"><img src="https://i.postimg.cc/CKjxSfGh/20240823_021906.png" alt="27"></a></li>
+	      <li><a href="javascript:void();" onclick="player.location.href='tv29.html?stream=sports2'"><img src="https://i.postimg.cc/SRKS6TwR/20240823_022008.png" alt="29"></a></li>
+	      <li><a href="javascript:void();" onclick="player.location.href='tv30.html?stream=sports2'"><img src="https://i.postimg.cc/rpCMv2Tz/20240823_022301.png" alt="30"></a></li>
+	    
+	      <li><a href="javascript:void();" onclick="player.location.href='tv31.html?stream=sports2'"><img src="https://i.postimg.cc/G2F8757j/20240823_021053.png" alt="31"></a></li>
+	     <li><a href="javascript:void();" onclick="player.location.href='tv32.html?stream=sports2'"><img src="https://i.postimg.cc/4yXKrQjR/20240823_020959.png" alt="32"></a></li>
+	    
+	     <li><a href="javascript:void();" onclick="player.location.href='tv33.html?stream=sports2'"><img src="https://i.postimg.cc/vB4MDg9x/20240823_023606.png" alt="33"></a></li>
+	      <li><a href="javascript:void();" onclick="player.location.href='tv34.html?stream=sports2'"><img src="https://i.postimg.cc/43NXkFx5/20240823_023458.png" alt="34"></a></li>
+	     
+	    
+	    
+	    
+	</ul>
+  </div>
+</div>
+
+	    	<script>
+		function disableClick(){
+			ducument.oneclick=function(event){
+				if (event.button == 2) {
+					alert('Right Click Message');
+					return false;
+				}
+			}
+		}
+	</script>
+		
+</br>
+
+<div class="col-md-12">
+<style> 
+.notice-movies{margin-top:3px;background:#ff0000;color: #40FF00;position:relative;padding:10px;overflow:hidden;font-family:var(--font-secondary);border-radius:7px}.notice-movies::before{content:'';position:absolute;border-left:17px solid var(--black);border-bottom:17px solid var(--black);border-top:17px solid transparent;border-right:17px solid transparent;left:98px;top:0;z-index:1}.notice-movies::after{content:'Notice:';position:absolute;height:100%;padding:0 6px;line-height:43px;background:Green;color: #0101DF;font-family:var(--font-primary);font-weight:600;left:0;top:0} </style>
+<center>
+     <marquee class="notice-movies" scrollamount="4">
+     <font size="4vw">  ➤➤ বর্তমানে আমাদের ওয়েব সাইট আপডেট চলছে, আপডেট চলাকালীন সময় কিছু চ্যানেল ডাউন হতে পারে। টিভি চ্যানেল প্লে হতে ৫ থেকে ১০ সেকেন্ড টাইম নিতে পারে, তবে সেটা সার্ভার ও আপনার ইন্টারনেটের উপর নির্ভর করবে ! ➤ আপনার মতামত জানাতে আমাদের টেলিগ্রাম গ্রুপে জয়েন করুন, এবং কোনো চ্যানেল প্লে না হলে সেটাও বলুন ➤ Bongo Flix Live টিভির সাথে থাকার জন্য ধন্যবাদ । ➤➤
+     </marquee>
+</center>
+    </div>
+
+</br>
+	<footer>
+        
+	<div style="text-align: center; background-size: cover;">
+        
+            <div style="text-align: center;"><span style="font-family: arial;"><span style="color: yellow;">|| Bongo Flix Live Tv || <span style="color: red;">All Rights Reseved ||</span> </div>
+        </ul>
+    </footer> 
+
+		    
+</body>
+<script src="script.js"></script>
+
+
+
+	<script disable-devtool-auto="" src="https://cdn.jsdelivr.net/npm/disable-devtool@latest"></script>
+
+<!-- Disable CTRL+U & CTRL+C and Mouse Right Click -->
+
+ <script type="text/javascript">  
+ var isCtrl = false;  
+ document.onkeyup=function(e)  
+ {  
+ if(e.which == 17)  
+ isCtrl=false;  
+ }  
+ document.onkeydown=function(e)  
+ {  
+ if(e.which == 17)  
+ isCtrl=true;  
+ if((e.which == 85) || (e.which == 67) && isCtrl == true)  
+ {  
+ // alert(‘Keyboard shortcuts are cool!’);  
+ return false;  
+ }  
+ }  
+ var isNS = (navigator.appName == "Netscape") ? 1 : 0;  
+ if(navigator.appName == "Netscape") document.captureEvents(Event.MOUSEDOWN||Event.MOUSEUP);  
+ function mischandler(){  
+ return false;  
+ }  
+ function mousehandler(e){  
+ var myevent = (isNS) ? e : event;  
+ var eventbutton = (isNS) ? myevent.which : myevent.button;  
+ if((eventbutton==2)||(eventbutton==3)) return false;  
+ }  
+ document.oncontextmenu = mischandler;  
+ document.onmousedown = mousehandler;  
+ document.onmouseup = mousehandler;  
+ </script>  
+</html>
